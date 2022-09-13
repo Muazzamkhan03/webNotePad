@@ -64,10 +64,11 @@ main{
     overflow-y: scroll;
 }
 
-.noteTitle{
+.listElement{
     width: 100%;
     border: 2px solid red;
     min-height: 5vh;
+    text-align: center;
     margin: 1vh 0;
     box-sizing: border-box;
 }
