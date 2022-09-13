@@ -1,0 +1,32 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+header{
+    height: 10vh;
+}
+
+footer{
+    height: 10vh;
+}
+
+main{
+    height: 80vh;
+    display: flex;
+    justify-content: center;
+}
+
+.list{
+    height: 100%;
+    background-color: blue;
+    width: 20%;
+    box-sizing: border-box;
+}
+
+.note{
+    height: 100%;
+    background-color: black;
+    width: 60%;
+    box-sizing: border-box;
+}
