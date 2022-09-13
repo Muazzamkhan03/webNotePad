@@ -16,7 +16,7 @@
         <div class="list">
             <div class="listHeader">
                 <h3>LIST OF NOTES</h3>
-                <button id="addNote">Add new note</button>
+                <button id="addNote" onclick="addNote()">Add new note</button>
             </div>
             <div class="listTray">
                 <div class="noteTitle">
@@ -28,9 +28,11 @@
         <div class="note">
             <div class="Title">
                 <input type="text" name="title" id="title" placeholder="Title">
+                <button id="saveNote" onclick="saveNote()">Save Note</button>
+                <button id="deleteNote" onclick="deleteNote()">Delete Note</button>
             </div>
             <div class="content">
-                <input name="Note" id="Note" placeholder="Write your notes here">
+                <textarea name="Note" id="Note" placeholder="Write your note here"></textarea>
             </div>
         </div>
     </main>
