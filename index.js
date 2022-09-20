@@ -1,30 +1,38 @@
 function saveNote(){
     let title = document.querySelector("#title").value;
     let content = document.querySelector("#Note").value;
-    let arr;
+    let obj;
     if(localStorage.getItem("items") != null){
-        arr = JSON.parse(localStorage.getItem("items"));
-        arr.push([title,content]);
-        localStorage.setItem("items",JSON.stringify(arr));
+        obj = JSON.parse(localStorage.getItem("items"));
+        obj[`${title}`] = content;
+        localStorage.setItem("items",JSON.stringify(obj));
     }
     else{
-        arr = [];
-        arr.push([title,content]);
-        localStorage.setItem("items",JSON.stringify(arr));
+        obj = {};
+        obj[`${title}`] = content;
+        localStorage.setItem("items",JSON.stringify(obj));
     }
 
     let str = "";
     str = document.querySelector("table").innerHTML;
     str += `
                 <tr>
-                <button class="listElement">${title}</button>
+                <button class="listElement" id="${title}" onclick=clicked(this.id)>${title}</button>
                 </tr>`;
     document.querySelector("table").innerHTML = str;
-    
+       
 }
 
-function clicked(){
-    console.log(`clicked on ${document.querySelector}`);
+function deleteNote(){
+    let title = document.querySelector("#title").value;
+    let obj = JSON.parse(localStorage.getItem("items"));
+    delete obj[`${title}`];
+    localStorage.setItem("items",JSON.stringify(obj));
+    location.reload();
+}
+
+function clicked(id){
+    console.log(`clicked on ${id}`);
 }
 
 function addNote(){
