@@ -1,19 +1,3 @@
-function display(){
-    let obj;
-    let str = "";
-    let titleArr;
-    if(localStorage.getItem("items") != null){
-        obj = JSON.parse(localStorage.getItem("items"));
-        titleArr = Object.keys(obj);
-        titleArr.forEach((element) => {
-            str += `
-                <tr>
-                <button class="listElement" id="${element}" onclick=clicked(this.id)>${element}</button>
-                </tr>`;
-        });
-        document.querySelector("table").innerHTML = str;
-    }
-}
 function saveNote(){
     let title = document.querySelector("#title").value;
     let content = document.querySelector("#Note").value;
@@ -28,7 +12,7 @@ function saveNote(){
         obj[`${title}`] = content;
         localStorage.setItem("items",JSON.stringify(obj));
     }
-    display();
+    displayList();
        
 }
 
@@ -38,13 +22,7 @@ function deleteNote(){
     delete obj[`${title}`];
     localStorage.setItem("items",JSON.stringify(obj));
     location.reload();
-    display();
+    displayList();
 }
 
-function clicked(id){
-    console.log(`clicked on ${id}`);
-}
-
-function addNote(){
-    
-}
+displayList();
