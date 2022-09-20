@@ -1,7 +1,7 @@
 function displayList(){
     let obj, titleArr, str = "";
 
-    if(localStorage.getItem("items") != null){
+    if(JSON.parse(localStorage.getItem("items")).length!= 0){
         obj = JSON.parse(localStorage.getItem("items"));
         titleArr = Object.keys(obj);
 
@@ -19,14 +19,21 @@ function displayList(){
 function displayNote(){
     let obj, titleArr, title, content, titleArea, textArea;
 
-    obj = JSON.parse(localStorage.getItem("items"));
-    titleArr = Object.keys(obj);
-    title = titleArr[0];
-    content = obj[`${title}`];
     titleArea = document.querySelector("#title");
     textArea = document.querySelector("#Note");
-    titleArea.value = title;
-    textArea.value = content; 
+
+    if(JSON.parse(localStorage.getItem("items")).length!= 0){
+        obj = JSON.parse(localStorage.getItem("items"));
+        titleArr = Object.keys(obj);
+        title = titleArr[0];
+        content = obj[`${title}`];
+        titleArea.value = title;
+        textArea.value = content; 
+    }
+    else{
+        textArea.value = "";
+        titleArea.value = "";
+    }
 }
 
 function saveNote(){
@@ -35,7 +42,7 @@ function saveNote(){
     title = document.querySelector("#title").value;
     content = document.querySelector("#Note").value;
 
-    if(localStorage.getItem("items") != null){
+    if(JSON.parse(localStorage.getItem("items")).length!= 0){
         obj = JSON.parse(localStorage.getItem("items"));
 
         if(`${title}` in obj){
@@ -62,16 +69,18 @@ function addNote(){
     titleArea = document.querySelector("#title");
     textArea = document.querySelector("#Note");
 
-    if(document.querySelector("#title").value in JSON.parse(localStorage.getItem("items")) == false){
-        let confirmed = confirm("This note is not yet saved, are you sure you want to make a new one, without saving this first?");
-        if(confirmed){
+    if(JSON.parse(localStorage.getItem("items")).length!= 0){
+        if(document.querySelector("#title").value in JSON.parse(localStorage.getItem("items")) == false){
+            let confirmed = confirm("This note is not yet saved, are you sure you want to make a new one, without saving this first?");
+            if(confirmed){
+                textArea.value = "";
+                titleArea.value = "";
+            }
+        }
+        else{
             textArea.value = "";
             titleArea.value = "";
         }
-    }
-    else{
-        textArea.value = "";
-        titleArea.value = "";
     }
 }
 
@@ -86,7 +95,7 @@ function deleteNote(){
     localStorage.setItem("items",JSON.stringify(obj));
     location.reload();
 
-    displayList();
+    // displayList();
 }
 
 function clicked(id){
