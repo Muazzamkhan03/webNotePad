@@ -15,15 +15,25 @@ function displayList(){
     }
 }
 
+function displayNote(){
+    let obj, titleArr, title, content, titleArea, textArea;
+    obj = JSON.parse(localStorage.getItem("items"));
+    titleArr = Object.keys(obj);
+    title = titleArr[0];
+    content = obj[`${title}`];
+    titleArea = document.querySelector("#title");
+    textArea = document.querySelector("#Note");
+    titleArea.value = title;
+    textArea.value = content; 
+}
+
 function saveNote(){
     let title = document.querySelector("#title").value;
     let content = document.querySelector("#Note").value;
     let obj;
     if(localStorage.getItem("items") != null){
         obj = JSON.parse(localStorage.getItem("items"));
-        obj[`${title}`] = content;
-        localStorage.setItem("items",JSON.stringify(obj));
-    }
+        
     else{
         obj = {};
         obj[`${title}`] = content;
@@ -80,3 +90,4 @@ function clicked(id){
 }
 
 displayList();
+displayNote();
