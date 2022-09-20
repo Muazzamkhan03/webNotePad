@@ -1,7 +1,7 @@
 function displayList(){
     let obj, titleArr, str = "";
 
-    if(JSON.parse(localStorage.getItem("items")).length!= 0){
+    if(Object.keys(JSON.parse(localStorage.getItem("items"))).length!= 0){
         obj = JSON.parse(localStorage.getItem("items"));
         titleArr = Object.keys(obj);
 
@@ -22,7 +22,7 @@ function displayNote(){
     titleArea = document.querySelector("#title");
     textArea = document.querySelector("#Note");
 
-    if(JSON.parse(localStorage.getItem("items")).length!= 0){
+    if(Object.keys(JSON.parse(localStorage.getItem("items"))).length!= 0){
         obj = JSON.parse(localStorage.getItem("items"));
         titleArr = Object.keys(obj);
         title = titleArr[0];
@@ -42,7 +42,7 @@ function saveNote(){
     title = document.querySelector("#title").value;
     content = document.querySelector("#Note").value;
 
-    if(JSON.parse(localStorage.getItem("items")).length!= 0){
+    if(Object.keys(JSON.parse(localStorage.getItem("items"))).length!= 0){
         obj = JSON.parse(localStorage.getItem("items"));
 
         if(`${title}` in obj){
@@ -69,7 +69,7 @@ function addNote(){
     titleArea = document.querySelector("#title");
     textArea = document.querySelector("#Note");
 
-    if(JSON.parse(localStorage.getItem("items")).length!= 0){
+    if(Object.keys(JSON.parse(localStorage.getItem("items"))).length!= 0){
         if(document.querySelector("#title").value in JSON.parse(localStorage.getItem("items")) == false){
             let confirmed = confirm("This note is not yet saved, are you sure you want to make a new one, without saving this first?");
             if(confirmed){
@@ -94,8 +94,6 @@ function deleteNote(){
 
     localStorage.setItem("items",JSON.stringify(obj));
     location.reload();
-
-    // displayList();
 }
 
 function clicked(id){
