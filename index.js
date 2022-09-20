@@ -33,7 +33,14 @@ function saveNote(){
     let obj;
     if(localStorage.getItem("items") != null){
         obj = JSON.parse(localStorage.getItem("items"));
-        
+        if(`${title}` in obj){
+
+        }
+        else{
+            obj[`${title}`] = content;
+            localStorage.setItem("items",JSON.stringify(obj));
+        }
+    }
     else{
         obj = {};
         obj[`${title}`] = content;
