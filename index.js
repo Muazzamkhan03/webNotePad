@@ -1,3 +1,20 @@
+function displayList(){
+    let obj;
+    let str = "";
+    let titleArr;
+    if(localStorage.getItem("items") != null){
+        obj = JSON.parse(localStorage.getItem("items"));
+        titleArr = Object.keys(obj);
+        titleArr.forEach((element) => {
+            str += `
+                <tr>
+                <button class="listElement" id="${element}" onclick=clicked(this.id)>${element}</button>
+                </tr>`;
+        });
+        document.querySelector("table").innerHTML = str;
+    }
+}
+
 function saveNote(){
     let title = document.querySelector("#title").value;
     let content = document.querySelector("#Note").value;
