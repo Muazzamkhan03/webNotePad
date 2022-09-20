@@ -16,6 +16,22 @@ function saveNote(){
        
 }
 
+function addNote(){
+    let titleArea = document.querySelector("#title");
+    let textArea = document.querySelector("#Note");
+    if(document.querySelector("#title").value in JSON.parse(localStorage.getItem("items")) == false){
+        let confirmed = confirm("This note is not yet saved, are you sure you want to make a new one, without saving this first?");
+        if(confirmed){
+            textArea.value = "";
+            titleArea.value = "";
+        }
+    }
+    else{
+        textArea.value = "";
+        titleArea.value = "";
+    }
+}
+
 function deleteNote(){
     let title = document.querySelector("#title").value;
     let obj = JSON.parse(localStorage.getItem("items"));
